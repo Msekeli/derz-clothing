@@ -1,0 +1,13 @@
+{
+  "name": "derz-clothing",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/storefront",
+    "dev:admin": "npm run dev --workspace=apps/admin",
+    "build": "npm run build --workspace=apps/storefront && npm run build --workspace=apps/admin"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
