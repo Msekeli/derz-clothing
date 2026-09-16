@@ -2,6 +2,7 @@
 
 import { Heart, Search, ShoppingBag, User } from "lucide-react";
 import { AppLink } from "@/components/shared/app-link";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { MobileNavigation } from "@/components/layout/mobile-navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -16,18 +17,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-[var(--derz-z-sticky)] border-b bg-background/95 backdrop-blur">
       <div className="derz-container">
-        <div className="flex min-h-16 items-center justify-between gap-6">
-          <div className="lg:hidden">
-            <MobileNavigation />
-          </div>
-          <ThemeToggle />
-          <AppLink
-            href="/"
-            className="shrink-0 text-2xl font-extrabold tracking-tight"
-            aria-label="DERZ home"
-          >
-            <span className="derz-brand-text">DERZ</span>
-          </AppLink>
+        <div className="flex min-h-20 items-center justify-between gap-4 lg:gap-6">
+          <BrandLogo />
 
           <nav
             className="hidden flex-1 items-center justify-center gap-8 lg:flex"
@@ -63,11 +54,13 @@ export function SiteHeader() {
 
             <AppLink
               href="/account"
-              className="hidden size-10 items-center justify-center rounded-md hover:bg-muted sm:flex"
+              className="flex size-10 items-center justify-center rounded-md hover:bg-muted"
               aria-label="Account"
             >
               <User size={20} aria-hidden="true" />
             </AppLink>
+
+            <ThemeToggle />
 
             <AppLink
               href="/bag"
@@ -76,6 +69,10 @@ export function SiteHeader() {
             >
               <ShoppingBag size={20} aria-hidden="true" />
             </AppLink>
+
+            <div className="lg:hidden">
+              <MobileNavigation />
+            </div>
           </div>
         </div>
       </div>
