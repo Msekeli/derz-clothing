@@ -10,6 +10,8 @@ const navigationItems = [
   { label: "Women", href: "/shop?department=women" },
   { label: "Kids", href: "/shop?department=kids" },
   { label: "New Arrivals", href: "/shop?collection=new-arrivals" },
+  { label: "Collections", href: "/shop?view=collections" },
+  { label: "Drops", href: "/shop?collection=limited-drops" },
 ];
 
 export function MobileNavigation() {
@@ -33,7 +35,6 @@ export function MobileNavigation() {
 
       {open ? (
         <div className="fixed inset-x-0 top-20 z-[var(--derz-z-overlay)]">
-          {/* Click-away area */}
           <button
             type="button"
             aria-label="Close navigation"
@@ -41,18 +42,19 @@ export function MobileNavigation() {
             onClick={closeMenu}
           />
 
-          {/* Mobile drawer */}
           <aside className="absolute right-0 top-0 w-1/2 max-w-sm border-l-2 border-border bg-background/95 shadow-lg backdrop-blur-md">
             <nav className="px-6 py-6" aria-label="Mobile navigation">
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
                 {navigationItems.map((item) => (
                   <AppLink
                     key={item.href}
                     href={item.href}
-                    className="text-lg font-semibold transition-colors hover:text-[var(--derz-orange)]"
+                    className="group border-b border-border/60 px-2 py-3 text-lg font-semibold transition-all duration-200 hover:border-[var(--derz-orange)] hover:text-[var(--derz-orange)] focus-visible:border-[var(--derz-orange)] focus-visible:text-[var(--derz-orange)]"
                     onClick={closeMenu}
                   >
-                    {item.label}
+                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:scale-[1.02]">
+                      {item.label}
+                    </span>
                   </AppLink>
                 ))}
               </div>
@@ -61,11 +63,17 @@ export function MobileNavigation() {
 
               <AppLink
                 href="/wishlist"
-                className="flex items-center gap-3 text-base font-medium transition-colors hover:text-[var(--derz-orange)]"
+                className="group flex items-center gap-3 border-b border-border/60 px-2 py-3 text-base font-medium transition-all duration-200 hover:border-[var(--derz-orange)] hover:text-[var(--derz-orange)]"
                 onClick={closeMenu}
               >
-                <Heart size={20} aria-hidden="true" />
-                Wishlist
+                <Heart
+                  size={20}
+                  aria-hidden="true"
+                  className="transition-transform duration-200 group-hover:scale-110"
+                />
+                <span className="transition-transform duration-200 group-hover:translate-x-1">
+                  Wishlist
+                </span>
               </AppLink>
             </nav>
           </aside>

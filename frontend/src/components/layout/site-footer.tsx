@@ -9,6 +9,8 @@ const footerGroups = [
       { label: "Women", href: "/shop?department=women" },
       { label: "Kids", href: "/shop?department=kids" },
       { label: "New Arrivals", href: "/shop?collection=new-arrivals" },
+      { label: "Collections", href: "/shop?view=collections" },
+      { label: "Drops", href: "/shop?collection=limited-drops" },
     ],
   },
   {
@@ -54,9 +56,11 @@ export function SiteFooter() {
                       <li key={link.href}>
                         <AppLink
                           href={link.href}
-                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                          className="group inline-flex border-b border-border/60 py-1 text-sm text-muted-foreground transition-all duration-200 hover:border-[var(--derz-orange)] hover:text-[var(--derz-orange)]"
                         >
-                          {link.label}
+                          <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:scale-[1.02]">
+                            {link.label}
+                          </span>
                         </AppLink>
                       </li>
                     ))}
@@ -69,7 +73,7 @@ export function SiteFooter() {
 
         {/* Mobile footer */}
         <div className="lg:hidden">
-          <div className="flex flex-wrap items-center text-sm">
+          <div className="flex flex-wrap items-center gap-y-2 text-sm">
             <span className="font-semibold">Help</span>
 
             {helpGroup?.links.map((link) => (
@@ -78,9 +82,11 @@ export function SiteFooter() {
 
                 <AppLink
                   href={link.href}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="group border-b border-border/60 py-1 text-muted-foreground transition-all duration-200 hover:border-[var(--derz-orange)] hover:text-[var(--derz-orange)]"
                 >
-                  {link.label}
+                  <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:scale-[1.02]">
+                    {link.label}
+                  </span>
                 </AppLink>
               </span>
             ))}
