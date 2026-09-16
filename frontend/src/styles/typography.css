@@ -1,0 +1,175 @@
+/* ============================================
+   DERZ — TYPOGRAPHY
+   ============================================ */
+
+:root {
+  /* --------------------------------------------
+     Font families
+     -------------------------------------------- */
+
+  --derz-font-display: var(--font-sans);
+  --derz-font-body: var(--font-sans);
+
+  /* --------------------------------------------
+     Font weights
+     -------------------------------------------- */
+
+  --derz-weight-regular: 400;
+  --derz-weight-medium: 500;
+  --derz-weight-semibold: 600;
+  --derz-weight-bold: 700;
+  --derz-weight-extrabold: 800;
+
+  /* --------------------------------------------
+     Display
+     -------------------------------------------- */
+
+  --derz-text-display-xl: clamp(3rem, 7vw, 7rem);
+  --derz-text-display-lg: clamp(2.5rem, 5vw, 5rem);
+  --derz-text-display-md: clamp(2rem, 4vw, 3.5rem);
+
+  /* --------------------------------------------
+     Headings
+     -------------------------------------------- */
+
+  --derz-text-h1: clamp(2.25rem, 4vw, 4rem);
+  --derz-text-h2: clamp(1.875rem, 3vw, 3rem);
+  --derz-text-h3: clamp(1.5rem, 2vw, 2rem);
+  --derz-text-h4: 1.25rem;
+  --derz-text-h5: 1.125rem;
+  --derz-text-h6: 1rem;
+
+  /* --------------------------------------------
+     Body
+     -------------------------------------------- */
+
+  --derz-text-lg: 1.125rem;
+  --derz-text-md: 1rem;
+  --derz-text-sm: 0.875rem;
+  --derz-text-xs: 0.75rem;
+
+  /* --------------------------------------------
+     Line heights
+     -------------------------------------------- */
+
+  --derz-leading-tight: 1.1;
+  --derz-leading-snug: 1.25;
+  --derz-leading-normal: 1.5;
+  --derz-leading-relaxed: 1.7;
+
+  /* --------------------------------------------
+     Letter spacing
+     -------------------------------------------- */
+
+  --derz-tracking-tight: -0.03em;
+  --derz-tracking-normal: 0;
+  --derz-tracking-wide: 0.04em;
+  --derz-tracking-wider: 0.08em;
+  --derz-tracking-uppercase: 0.12em;
+}
+
+/* --------------------------------------------
+   Global typography
+   -------------------------------------------- */
+
+body {
+  font-family: var(--derz-font-body);
+  font-size: var(--derz-text-md);
+  line-height: var(--derz-leading-normal);
+  font-weight: var(--derz-weight-regular);
+}
+
+/* --------------------------------------------
+   Headings
+   -------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--derz-font-display);
+  font-weight: var(--derz-weight-bold);
+  line-height: var(--derz-leading-tight);
+  letter-spacing: var(--derz-tracking-tight);
+}
+
+h1 {
+  font-size: var(--derz-text-h1);
+}
+
+h2 {
+  font-size: var(--derz-text-h2);
+}
+
+h3 {
+  font-size: var(--derz-text-h3);
+}
+
+h4 {
+  font-size: var(--derz-text-h4);
+}
+
+h5 {
+  font-size: var(--derz-text-h5);
+}
+
+h6 {
+  font-size: var(--derz-text-h6);
+}
+
+/* --------------------------------------------
+   Paragraphs
+   -------------------------------------------- */
+
+p {
+  margin: 0;
+}
+
+/* --------------------------------------------
+   Links
+   -------------------------------------------- */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --------------------------------------------
+   Labels / Eyebrows
+   -------------------------------------------- */
+
+.derz-eyebrow {
+  font-size: var(--derz-text-xs);
+  font-weight: var(--derz-weight-semibold);
+  line-height: var(--derz-leading-normal);
+  letter-spacing: var(--derz-tracking-uppercase);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------
+   Display text
+   -------------------------------------------- */
+
+.derz-display-xl {
+  font-size: var(--derz-text-display-xl);
+  font-weight: var(--derz-weight-extrabold);
+  line-height: var(--derz-leading-tight);
+  letter-spacing: var(--derz-tracking-tight);
+}
+
+.derz-display-lg {
+  font-size: var(--derz-text-display-lg);
+  font-weight: var(--derz-weight-extrabold);
+  line-height: var(--derz-leading-tight);
+  letter-spacing: var(--derz-tracking-tight);
+}
+
+.derz-display-md {
+  font-size: var(--derz-text-display-md);
+  font-weight: var(--derz-weight-bold);
+  line-height: var(--derz-leading-tight);
+  letter-spacing: var(--derz-tracking-tight);
+}

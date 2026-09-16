@@ -1,0 +1,101 @@
+/* ============================================
+   DERZ — THEMES
+   ============================================ */
+
+/* --------------------------------------------
+   Light theme
+   -------------------------------------------- */
+
+:root {
+  --background: var(--derz-off-white);
+  --foreground: var(--derz-brown);
+
+  --card: #ffffff;
+  --card-foreground: var(--derz-brown);
+
+  --popover: #ffffff;
+  --popover-foreground: var(--derz-brown);
+
+  --primary: var(--derz-brown);
+  --primary-foreground: var(--derz-cream);
+
+  --secondary: var(--derz-cream);
+  --secondary-foreground: var(--derz-brown);
+
+  --muted: #f1ebe3;
+  --muted-foreground: #6f6258;
+
+  --accent: var(--derz-orange);
+  --accent-foreground: #ffffff;
+
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+
+  --border: #ded4c9;
+  --input: #ded4c9;
+  --ring: var(--derz-orange);
+
+  --chart-1: var(--derz-orange);
+  --chart-2: var(--derz-brown);
+  --chart-3: var(--derz-stone);
+  --chart-4: #8b5e3c;
+  --chart-5: #5c4030;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--derz-brown);
+  --sidebar-primary: var(--derz-brown);
+  --sidebar-primary-foreground: var(--derz-cream);
+  --sidebar-accent: var(--derz-cream);
+  --sidebar-accent-foreground: var(--derz-brown);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+/* --------------------------------------------
+   Dark theme
+   -------------------------------------------- */
+
+.dark {
+  --background: #1a0f09;
+  --foreground: var(--derz-cream);
+
+  --card: #24150d;
+  --card-foreground: var(--derz-cream);
+
+  --popover: #24150d;
+  --popover-foreground: var(--derz-cream);
+
+  --primary: var(--derz-cream);
+  --primary-foreground: var(--derz-brown);
+
+  --secondary: #332015;
+  --secondary-foreground: var(--derz-cream);
+
+  --muted: #2b1b12;
+  --muted-foreground: var(--derz-stone);
+
+  --accent: var(--derz-orange);
+  --accent-foreground: #ffffff;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #4a3022;
+  --input: #4a3022;
+  --ring: var(--derz-orange);
+
+  --chart-1: var(--derz-orange);
+  --chart-2: var(--derz-cream);
+  --chart-3: var(--derz-stone);
+  --chart-4: #a87552;
+  --chart-5: #704936;
+
+  --sidebar: #24150d;
+  --sidebar-foreground: var(--derz-cream);
+  --sidebar-primary: var(--derz-cream);
+  --sidebar-primary-foreground: var(--derz-brown);
+  --sidebar-accent: #332015;
+  --sidebar-accent-foreground: var(--derz-cream);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}

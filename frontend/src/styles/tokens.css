@@ -1,0 +1,96 @@
+/* ============================================
+   DERZ — DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* --------------------------------------------
+     Brand
+     -------------------------------------------- */
+
+  --derz-brown: #2e1a0f;
+  --derz-orange: #e05a1f;
+  --derz-cream: #f5e9d7;
+  --derz-off-white: #faf8f4;
+  --derz-stone: #c9b7a0;
+
+  /* --------------------------------------------
+     Typography
+     -------------------------------------------- */
+
+  --derz-font-display: var(--font-sans);
+  --derz-font-body: var(--font-sans);
+
+  --derz-weight-regular: 400;
+  --derz-weight-medium: 500;
+  --derz-weight-semibold: 600;
+  --derz-weight-bold: 700;
+  --derz-weight-extrabold: 800;
+
+  /* --------------------------------------------
+     Spacing
+     -------------------------------------------- */
+
+  --derz-space-1: 0.25rem;
+  --derz-space-2: 0.5rem;
+  --derz-space-3: 0.75rem;
+  --derz-space-4: 1rem;
+  --derz-space-5: 1.25rem;
+  --derz-space-6: 1.5rem;
+  --derz-space-8: 2rem;
+  --derz-space-10: 2.5rem;
+  --derz-space-12: 3rem;
+  --derz-space-16: 4rem;
+  --derz-space-20: 5rem;
+  --derz-space-24: 6rem;
+  --derz-space-32: 8rem;
+
+  /* --------------------------------------------
+     Layout
+     -------------------------------------------- */
+
+  --derz-container: 1440px;
+
+  --derz-gutter-mobile: 1rem;
+  --derz-gutter-tablet: 2rem;
+  --derz-gutter-desktop: 3rem;
+
+  /* --------------------------------------------
+     Radius
+     -------------------------------------------- */
+
+  --derz-radius-sm: 0.375rem;
+  --derz-radius-md: 0.5rem;
+  --derz-radius-lg: 0.75rem;
+  --derz-radius-xl: 1rem;
+  --derz-radius-2xl: 1.5rem;
+  --derz-radius-full: 9999px;
+
+  /* --------------------------------------------
+     Shadows
+     -------------------------------------------- */
+
+  --derz-shadow-sm: 0 1px 2px rgb(46 26 15 / 0.06);
+  --derz-shadow-md: 0 4px 12px rgb(46 26 15 / 0.08);
+  --derz-shadow-lg: 0 12px 30px rgb(46 26 15 / 0.12);
+
+  /* --------------------------------------------
+     Motion
+     -------------------------------------------- */
+
+  --derz-duration-fast: 150ms;
+  --derz-duration-normal: 250ms;
+  --derz-duration-slow: 400ms;
+
+  --derz-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* --------------------------------------------
+     Layering
+     -------------------------------------------- */
+
+  --derz-z-base: 0;
+  --derz-z-dropdown: 1000;
+  --derz-z-sticky: 1100;
+  --derz-z-overlay: 1200;
+  --derz-z-modal: 1300;
+  --derz-z-toast: 1400;
+}
