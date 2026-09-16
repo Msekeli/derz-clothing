@@ -1,0 +1,83 @@
+/* ============================================
+   DERZ — UTILITIES
+   ============================================ */
+
+/* --------------------------------------------
+   Brand text
+   -------------------------------------------- */
+
+.derz-brand-text {
+  color: var(--derz-orange);
+}
+
+.derz-gradient-text {
+  background: linear-gradient(90deg, var(--derz-orange), var(--derz-brown));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------------
+   Surface utilities
+   -------------------------------------------- */
+
+.derz-surface {
+  background: var(--card);
+  color: var(--card-foreground);
+}
+
+.derz-surface-muted {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+
+/* --------------------------------------------
+   Borders
+   -------------------------------------------- */
+
+.derz-border {
+  border: 1px solid var(--border);
+}
+
+.derz-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+/* --------------------------------------------
+   Focus
+   -------------------------------------------- */
+
+.derz-focus-ring:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------
+   Interactive transitions
+   -------------------------------------------- */
+
+.derz-interactive {
+  transition:
+    color var(--derz-duration-normal) var(--derz-ease-standard),
+    background-color var(--derz-duration-normal) var(--derz-ease-standard),
+    border-color var(--derz-duration-normal) var(--derz-ease-standard),
+    transform var(--derz-duration-normal) var(--derz-ease-standard);
+}
+
+/* --------------------------------------------
+   Visually hidden
+   -------------------------------------------- */
+
+.derz-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,157 @@
+/* ============================================
+   DERZ — LAYOUT
+   ============================================ */
+
+:root {
+  --derz-container-width: 1440px;
+
+  --derz-page-gutter: var(--derz-gutter-mobile);
+  --derz-section-space: var(--derz-space-12);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --derz-page-gutter: var(--derz-gutter-tablet);
+    --derz-section-space: var(--derz-space-16);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --derz-page-gutter: var(--derz-gutter-desktop);
+    --derz-section-space: var(--derz-space-24);
+  }
+}
+
+/* --------------------------------------------
+   Page container
+   -------------------------------------------- */
+
+.derz-container {
+  width: 100%;
+  max-width: var(--derz-container-width);
+  margin-inline: auto;
+  padding-inline: var(--derz-page-gutter);
+}
+
+/* --------------------------------------------
+   Full-width section
+   -------------------------------------------- */
+
+.derz-section {
+  width: 100%;
+  padding-block: var(--derz-section-space);
+}
+
+/* --------------------------------------------
+   Section content
+   -------------------------------------------- */
+
+.derz-section-inner {
+  width: 100%;
+  max-width: var(--derz-container-width);
+  margin-inline: auto;
+  padding-inline: var(--derz-page-gutter);
+}
+
+/* --------------------------------------------
+   Responsive grid
+   -------------------------------------------- */
+
+.derz-grid {
+  display: grid;
+  gap: var(--derz-space-6);
+}
+
+.derz-grid-2 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.derz-grid-3 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.derz-grid-4 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .derz-grid-2,
+  .derz-grid-3,
+  .derz-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .derz-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .derz-grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------------------
+   Flex utilities
+   -------------------------------------------- */
+
+.derz-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.derz-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.derz-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------
+   Section spacing
+   -------------------------------------------- */
+
+.derz-stack-xs {
+  gap: var(--derz-space-2);
+}
+
+.derz-stack-sm {
+  gap: var(--derz-space-4);
+}
+
+.derz-stack-md {
+  gap: var(--derz-space-6);
+}
+
+.derz-stack-lg {
+  gap: var(--derz-space-8);
+}
+
+.derz-stack-xl {
+  gap: var(--derz-space-12);
+}
+
+/* --------------------------------------------
+   Content widths
+   -------------------------------------------- */
+
+.derz-content-narrow {
+  width: 100%;
+  max-width: 720px;
+}
+
+.derz-content-medium {
+  width: 100%;
+  max-width: 960px;
+}
+
+.derz-content-wide {
+  width: 100%;
+  max-width: 1200px;
+}
