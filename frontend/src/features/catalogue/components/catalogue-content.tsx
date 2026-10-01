@@ -1,15 +1,19 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { CatalogueGrid } from "../sections/catalogue-grid";
 import type { CatalogueResponse, CatalogueSort } from "../types";
 import {
-  DEFAULT_FILTER_STATE,
   filterCatalogueProducts,
   updateFilterValues,
-  type CatalogueFilterState,
 } from "../catalogue-filter-state";
+import {
+  createCatalogueUrl,
+  getCatalogueUrlState,
+  type CatalogueUrlState,
+} from "../catalogue-url-state";
 import { CatalogueToolbar } from "./catalogue-toolbar";
 import { FilterSidebar } from "./filter-sidebar";
 import { MobileFilterPanel } from "./mobile-filter-panel";
@@ -19,19 +23,61 @@ type CatalogueContentProps = {
 };
 
 export function CatalogueContent({ catalogue }: CatalogueContentProps) {
-  const [draftFilters, setDraftFilters] =
-    useState<CatalogueFilterState>(DEFAULT_FILTER_STATE);
-
-  const [appliedFilters, setAppliedFilters] =
-    useState<CatalogueFilterState>(DEFAULT_FILTER_STATE);
-
-  const [sort, setSort] = useState<CatalogueSort>("featured");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const filteredProducts = useMemo(() => {
-    let products = filterCatalogueProducts(catalogue.products, appliedFilters);
+  const catalogueState = useMemo(
+    () => getCatalogueUrlState(new URLSearchParams(searchParams.toString())),
+    [searchParams],
+  );
 
-    switch (sort) {
+  function updateCatalogueState(nextState: CatalogueUrlState) {
+    const nextUrl = createCatalogueUrl(
+      pathname,
+      new URLSearchParams(searchParams.toString()),
+      nextState,
+    );
+
+    router.replace(nextUrl, { scroll: false });
+  }
+
+  function handleFilterChange(filterId: string, values: string[]) {
+    updateCatalogueState({
+      ...updateFilterValues(catalogueState, filterId, values),
+      sort: catalogueState.sort,
+    });
+  }
+
+  function handlePriceRangeChange(value: [number, number]) {
+    updateCatalogueState({
+      ...catalogueState,
+      priceRange: value,
+    });
+  }
+
+  function clearFilters() {
+    updateCatalogueState({
+      ...catalogueState,
+      categories: [],
+      styles: [],
+      collections: [],
+      priceRange: [200, 2000],
+    });
+  }
+
+  function handleSortChange(sort: CatalogueSort) {
+    updateCatalogueState({
+      ...catalogueState,
+      sort,
+    });
+  }
+
+  const filteredProducts = useMemo(() => {
+    let products = filterCatalogueProducts(catalogue.products, catalogueState);
+
+    switch (catalogueState.sort) {
       case "price-low-high":
         products = [...products].sort((a, b) => a.price - b.price);
         break;
@@ -50,55 +96,33 @@ export function CatalogueContent({ catalogue }: CatalogueContentProps) {
     }
 
     return products;
-  }, [catalogue.products, appliedFilters, sort]);
-
-  function handleFilterChange(filterId: string, values: string[]) {
-    setDraftFilters((current) => updateFilterValues(current, filterId, values));
-  }
-
-  function handlePriceRangeChange(value: [number, number]) {
-    setDraftFilters((current) => ({
-      ...current,
-      priceRange: value,
-    }));
-  }
-
-  function applyFilters() {
-    setAppliedFilters(draftFilters);
-  }
-
-  function clearAll() {
-    setDraftFilters(DEFAULT_FILTER_STATE);
-    setAppliedFilters(DEFAULT_FILTER_STATE);
-  }
+  }, [catalogue.products, catalogueState]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-10">
       <FilterSidebar
         filters={catalogue.filters}
-        selectedCategories={draftFilters.categories}
-        selectedStyles={draftFilters.styles}
-        selectedCollections={draftFilters.collections}
-        priceRange={draftFilters.priceRange}
+        selectedCategories={catalogueState.categories}
+        selectedStyles={catalogueState.styles}
+        selectedCollections={catalogueState.collections}
+        priceRange={catalogueState.priceRange}
         onCategoriesChange={(values) => handleFilterChange("category", values)}
         onStylesChange={(values) => handleFilterChange("style", values)}
         onCollectionsChange={(values) =>
           handleFilterChange("collection", values)
         }
         onPriceRangeChange={handlePriceRangeChange}
-        onApplyFilters={applyFilters}
-        onClearAll={clearAll}
+        onClearAll={clearFilters}
       />
 
       <MobileFilterPanel
         open={mobileFiltersOpen}
         filters={catalogue.filters}
-        draftFilters={draftFilters}
+        draftFilters={catalogueState}
         onOpenChange={setMobileFiltersOpen}
         onFilterChange={handleFilterChange}
         onPriceRangeChange={handlePriceRangeChange}
-        onApplyFilters={applyFilters}
-        onClearAll={clearAll}
+        onClearAll={clearFilters}
       />
 
       <section className="min-w-0">
@@ -121,8 +145,8 @@ export function CatalogueContent({ catalogue }: CatalogueContentProps) {
             </div>
 
             <CatalogueToolbar
-              sort={sort}
-              onSortChange={setSort}
+              sort={catalogueState.sort}
+              onSortChange={handleSortChange}
               onFilterClick={() => setMobileFiltersOpen(true)}
             />
           </div>

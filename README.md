@@ -1,17 +1,16 @@
-# DERZ Clothing
+# DERZ Storefront
 
-DERZ is a South African youth fashion brand focused on contemporary casual and streetwear, with a strong connection to amapiano culture.
+DERZ Storefront is the customer-facing commerce application for the DERZ fashion and lifestyle brand.
 
-The brand combines modern fashion with culturally inspired pieces, footwear, bags, accessories, limited drops, and collaborations.
-
-## Repository
+This repository contains the complete Storefront application:
 
 ```text
 derz-clothing/
-├── frontend/          # Customer-facing Storefront
-├── backend/           # Storefront Web API
-├── packages/          # Shared code where justified
-├── infrastructure/    # Local infrastructure
-├── AGENTS.md          # Development and AI-agent instructions
-└── README.md          # Repository documentation
+├── frontend/       # Next.js customer-facing application
+├── backend/        # ASP.NET Core Storefront API
+├── packages/       # Shared Storefront packages where required
+├── infrastructure/ # Local/deployment infrastructure
+├── docs/           # Project documentation and source-of-truth documents
+├── AGENTS.md       # Rules for AI-assisted development
+└── README.md       # Project overview
 ```

@@ -14,7 +14,6 @@ type FilterSidebarProps = {
   onCollectionsChange: (values: string[]) => void;
   onPriceRangeChange: (value: [number, number]) => void;
   onClearAll: () => void;
-  onApplyFilters: () => void;
 };
 
 export function FilterSidebar({
@@ -28,16 +27,18 @@ export function FilterSidebar({
   onCollectionsChange,
   onPriceRangeChange,
   onClearAll,
-  onApplyFilters
 }: FilterSidebarProps) {
   function getSelectedValues(filterId: string) {
     switch (filterId) {
       case "category":
         return selectedCategories;
+
       case "style":
         return selectedStyles;
+
       case "collection":
         return selectedCollections;
+
       default:
         return [];
     }
@@ -48,9 +49,11 @@ export function FilterSidebar({
       case "category":
         onCategoriesChange(values);
         break;
+
       case "style":
         onStylesChange(values);
         break;
+
       case "collection":
         onCollectionsChange(values);
         break;
@@ -73,20 +76,12 @@ export function FilterSidebar({
           ))}
 
           <div className="pt-1">
-           <button
-            type="button"
-            onClick={onApplyFilters}
-            className="w-full bg-[var(--derz-orange)] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
-          >
-            Apply filters
-          </button>
-
             <button
               type="button"
               onClick={onClearAll}
-              className="mt-3 w-full text-sm font-medium underline underline-offset-4 transition-colors hover:text-[var(--derz-orange)]"
+              className="w-full bg-[var(--derz-orange)] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
-              Clear all
+              Clear filters
             </button>
           </div>
         </div>

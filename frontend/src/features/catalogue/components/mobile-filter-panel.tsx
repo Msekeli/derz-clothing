@@ -22,7 +22,6 @@ type MobileFilterPanelProps = {
   onOpenChange: (open: boolean) => void;
   onFilterChange: (filterId: string, values: string[]) => void;
   onPriceRangeChange: (value: [number, number]) => void;
-  onApplyFilters: () => void;
   onClearAll: () => void;
 };
 
@@ -33,7 +32,6 @@ export function MobileFilterPanel({
   onOpenChange,
   onFilterChange,
   onPriceRangeChange,
-  onApplyFilters,
   onClearAll,
 }: MobileFilterPanelProps) {
   const [expandedFilter, setExpandedFilter] = useState<string | null>(null);
@@ -131,20 +129,12 @@ export function MobileFilterPanel({
             <button
               type="button"
               onClick={() => {
-                onApplyFilters();
+                onClearAll();
                 onOpenChange(false);
               }}
               className="w-full bg-[var(--derz-orange)] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
-              Apply filters
-            </button>
-
-            <button
-              type="button"
-              onClick={onClearAll}
-              className="mt-2 w-full text-sm font-medium underline underline-offset-4 transition-colors hover:text-[var(--derz-orange)]"
-            >
-              Clear all
+              Clear filters
             </button>
           </div>
         </div>
