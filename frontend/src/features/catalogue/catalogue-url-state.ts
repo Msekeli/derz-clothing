@@ -40,6 +40,7 @@ export function getCatalogueUrlState(
   const minPrice = parsePrice(params.get("minPrice"));
   const maxPrice = parsePrice(params.get("maxPrice"));
   const sort = params.get("sort");
+  const search = params.get("search") ?? "";
 
   return {
     categories: getRepeatedValues(params, "category"),
@@ -49,6 +50,7 @@ export function getCatalogueUrlState(
       minPrice ?? DEFAULT_FILTER_STATE.priceRange[0],
       maxPrice ?? DEFAULT_FILTER_STATE.priceRange[1],
     ],
+    search,
     sort: VALID_SORTS.includes(sort as CatalogueSort)
       ? (sort as CatalogueSort)
       : DEFAULT_CATALOGUE_URL_STATE.sort,
@@ -62,9 +64,15 @@ export function createCatalogueUrl(
 ) {
   const nextParams = new URLSearchParams(params);
 
-  ["category", "style", "collection", "minPrice", "maxPrice", "sort"].forEach(
-    (key) => nextParams.delete(key),
-  );
+  [
+    "category",
+    "style",
+    "collection",
+    "minPrice",
+    "maxPrice",
+    "sort",
+    "search",
+  ].forEach((key) => nextParams.delete(key));
 
   state.categories.forEach((value) => nextParams.append("category", value));
 
@@ -85,6 +93,11 @@ export function createCatalogueUrl(
 
   if (state.sort !== DEFAULT_CATALOGUE_URL_STATE.sort) {
     nextParams.set("sort", state.sort);
+  }
+
+  const trimmedSearch = state.search.trim();
+  if (trimmedSearch) {
+    nextParams.set("search", trimmedSearch);
   }
 
   const query = nextParams.toString();

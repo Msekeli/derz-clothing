@@ -6,12 +6,16 @@ import type { CatalogueSort } from "../types";
 import { CatalogueSearch } from "./catalogue-search";
 
 type CatalogueToolbarProps = {
+  search: string;
+  onSearchChange: (search: string) => void;
   sort: CatalogueSort;
   onSortChange: (sort: CatalogueSort) => void;
   onFilterClick: () => void;
 };
 
 export function CatalogueToolbar({
+  search,
+  onSearchChange,
   sort,
   onSortChange,
   onFilterClick,
@@ -19,7 +23,7 @@ export function CatalogueToolbar({
   return (
     <div className="flex shrink-0 items-center gap-2">
       <div className="hidden sm:block">
-        <CatalogueSearch />
+        <CatalogueSearch value={search} onChange={onSearchChange} />
       </div>
 
       <button

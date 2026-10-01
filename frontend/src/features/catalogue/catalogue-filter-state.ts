@@ -5,6 +5,7 @@ export type CatalogueFilterState = {
   styles: string[];
   collections: string[];
   priceRange: [number, number];
+  search: string;
 };
 
 export const DEFAULT_PRICE_RANGE: [number, number] = [200, 2000];
@@ -14,6 +15,7 @@ export const DEFAULT_FILTER_STATE: CatalogueFilterState = {
   styles: [],
   collections: [],
   priceRange: DEFAULT_PRICE_RANGE,
+  search: "",
 };
 
 export function getSelectedFilterValues(
@@ -68,6 +70,9 @@ export function filterCatalogueProducts(
   products: CatalogueProduct[],
   filters: CatalogueFilterState,
 ) {
+  const query = (filters.search ?? "").trim().toLowerCase();
+  const queryWords = query ? query.split(/\s+/).filter(Boolean) : [];
+
   return products.filter((product) => {
     const matchesCategory =
       filters.categories.length === 0 ||
@@ -84,6 +89,19 @@ export function filterCatalogueProducts(
       product.price >= filters.priceRange[0] &&
       product.price <= filters.priceRange[1];
 
-    return matchesCategory && matchesStyle && matchesCollection && matchesPrice;
+    const searchableText =
+      `${product.name} ${product.category} ${product.style} ${product.collection}`.toLowerCase();
+
+    const matchesSearch =
+      queryWords.length === 0 ||
+      queryWords.every((word) => searchableText.includes(word));
+
+    return (
+      matchesCategory &&
+      matchesStyle &&
+      matchesCollection &&
+      matchesPrice &&
+      matchesSearch
+    );
   });
 }

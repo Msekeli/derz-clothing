@@ -3,9 +3,11 @@
 import { useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { EmptyState } from "@/components/shared/empty-state";
 import { CatalogueGrid } from "../sections/catalogue-grid";
 import type { CatalogueResponse, CatalogueSort } from "../types";
 import {
+  DEFAULT_FILTER_STATE,
   filterCatalogueProducts,
   updateFilterValues,
 } from "../catalogue-filter-state";
@@ -14,6 +16,7 @@ import {
   getCatalogueUrlState,
   type CatalogueUrlState,
 } from "../catalogue-url-state";
+import { CatalogueSearch } from "./catalogue-search";
 import { CatalogueToolbar } from "./catalogue-toolbar";
 import { FilterSidebar } from "./filter-sidebar";
 import { MobileFilterPanel } from "./mobile-filter-panel";
@@ -43,6 +46,13 @@ export function CatalogueContent({ catalogue }: CatalogueContentProps) {
     router.replace(nextUrl, { scroll: false });
   }
 
+  function handleSearchChange(search: string) {
+    updateCatalogueState({
+      ...catalogueState,
+      search,
+    });
+  }
+
   function handleFilterChange(filterId: string, values: string[]) {
     updateCatalogueState({
       ...updateFilterValues(catalogueState, filterId, values),
@@ -59,11 +69,8 @@ export function CatalogueContent({ catalogue }: CatalogueContentProps) {
 
   function clearFilters() {
     updateCatalogueState({
-      ...catalogueState,
-      categories: [],
-      styles: [],
-      collections: [],
-      priceRange: [200, 2000],
+      ...DEFAULT_FILTER_STATE,
+      sort: catalogueState.sort,
     });
   }
 
@@ -145,15 +152,48 @@ export function CatalogueContent({ catalogue }: CatalogueContentProps) {
             </div>
 
             <CatalogueToolbar
+              search={catalogueState.search}
+              onSearchChange={handleSearchChange}
               sort={catalogueState.sort}
               onSortChange={handleSortChange}
               onFilterClick={() => setMobileFiltersOpen(true)}
             />
           </div>
+
+          <div className="mt-2.5 sm:hidden">
+            <CatalogueSearch
+              id="catalogue-search-mobile"
+              value={catalogueState.search}
+              onChange={handleSearchChange}
+              className="w-full"
+            />
+          </div>
         </div>
 
         <div className="pt-4 lg:pt-5">
-          <CatalogueGrid products={filteredProducts} />
+          {filteredProducts.length > 0 ? (
+            <CatalogueGrid products={filteredProducts} />
+          ) : (
+            <div className="py-12">
+              <EmptyState
+                title="No products found"
+                description={
+                  catalogueState.search.trim()
+                    ? `We couldn't find any products matching "${catalogueState.search.trim()}". Try clearing your search or adjusting your filters.`
+                    : "We couldn't find any products matching your selected filters. Try broadening your criteria or clearing filters."
+                }
+                action={
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="bg-[var(--derz-orange)] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                  >
+                    Clear filters
+                  </button>
+                }
+              />
+            </div>
+          )}
         </div>
       </section>
     </div>
